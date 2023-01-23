@@ -29,6 +29,7 @@ function TurnLeft () {
     // maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
     // maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
     basic.pause(1000)
+    DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
 }
 // Set MOVE variable to TRUE - this "activates" the display loop in the FOREVER block
 // 
@@ -71,6 +72,7 @@ function TurnRight () {
     // maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
     // maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
     basic.pause(1000)
+    DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
 }
 let Move = false
 huskylens.initI2c()
@@ -98,6 +100,6 @@ basic.forever(function () {
             backForward()
         }
     } else {
-        DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eLeftMotor)
+        DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
     }
 })
