@@ -45,6 +45,8 @@ input.onButtonPressed(Button.A, function () {
 // maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
 input.onButtonPressed(Button.B, function () {
     Move = false
+    basic.showIcon(IconNames.No)
+    basic.pause(1000)
 })
 function backForward () {
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
@@ -76,7 +78,7 @@ huskylens.initMode(protocolAlgorithm.OBJECTCLASSIFICATION)
 // maqueen.motorStop(maqueen.Motors.All)
 basic.clearScreen()
 Move = false
-basic.showIcon(IconNames.StickFigure)
+basic.showIcon(IconNames.Happy)
 // Request latest result from HUSKYLENS at start of FOREVER so that each time it repeats it has the latest result
 // 
 // If MOVE variable is set to TRUE - show the recognised ID# from the HUSKYLENS & display its number / light LED based on the result
@@ -95,5 +97,7 @@ basic.forever(function () {
         } else if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
             backForward()
         }
+    } else {
+        DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eLeftMotor)
     }
 })
