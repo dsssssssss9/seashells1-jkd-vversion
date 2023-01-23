@@ -16,6 +16,17 @@
 /**
  * Start Communication between HuskyLens & Micro:Bit
  */
+// Set MOVE variable to FALSE to "deactivate" the display part of the FOREVER block
+// 
+// Also turn off both Maqueen LED
+// maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
+// maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
+input.onButtonPressed(Button.B, function () {
+    Move = false
+    basic.showIcon(IconNames.No)
+    basic.pause(1000)
+    DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
+})
 function TurnLeft () {
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eRightMotor, MyEnumDir.eForward, 100)
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eLeftMotor, MyEnumDir.eBackward, 100)
@@ -31,24 +42,6 @@ function TurnLeft () {
     basic.pause(1000)
     DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
 }
-// Set MOVE variable to TRUE - this "activates" the display loop in the FOREVER block
-// 
-// Display TICK icon to show it has been activated
-input.onButtonPressed(Button.A, function () {
-    Move = true
-    basic.showIcon(IconNames.Yes)
-    basic.pause(1000)
-})
-// Set MOVE variable to FALSE to "deactivate" the display part of the FOREVER block
-// 
-// Also turn off both Maqueen LED
-// maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
-// maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
-input.onButtonPressed(Button.B, function () {
-    Move = false
-    basic.showIcon(IconNames.No)
-    basic.pause(1000)
-})
 function backForward () {
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
     // maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 25)
@@ -59,6 +52,14 @@ function backForward () {
     basic.pause(1000)
     DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
 }
+// Set MOVE variable to TRUE - this "activates" the display loop in the FOREVER block
+// 
+// Display TICK icon to show it has been activated
+input.onButtonPressed(Button.A, function () {
+    Move = true
+    basic.showIcon(IconNames.Yes)
+    basic.pause(1000)
+})
 function TurnRight () {
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eLeftMotor, MyEnumDir.eForward, 100)
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eRightMotor, MyEnumDir.eBackward, 100)
